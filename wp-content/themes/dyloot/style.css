@@ -1,0 +1,257 @@
+/*
+Theme Name: dyloot
+Theme URI: http://dyloot.com
+Description: Theme for the website dyloot.com
+Author: dyloot team, Paul & Marius Craciunoiu
+Version: 1.0
+Tags: one-column
+*/
+
+
+/* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+body {
+	line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote {
+	quotes: none;
+}
+blockquote:before, blockquote:after {
+	content: '';
+	content: none;
+}
+del {
+	text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a img {
+	border: none;
+}
+
+/* =Layout
+-------------------------------------------------------------- */
+
+#footer {
+	clear: both;
+	width: 100%;
+}
+
+/* =Structure
+-------------------------------------------------------------- */
+
+/* The main theme structure */
+#wrapper {
+	margin: 0 auto;
+	width: 960px;
+}
+
+/* =Global Elements
+-------------------------------------------------------------- */
+
+/* Main global 'theme' and typographic styles */
+body {
+	background: url('img/bg.png') repeat;
+    font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+/* Text elements */
+input[type="text"],
+textarea {
+	background: #f9f9f9;
+	border: 1px solid #ccc;
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+	-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+	padding: 2px;
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+	position: absolute;
+	left: -9000px;
+}
+
+/* =Header
+-------------------------------------------------------------- */
+/* =Menu
+-------------------------------------------------------------- */
+
+#header {
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+	padding: 0;
+    margin: 0;
+}
+#access {
+	line-height: 40px;
+    position: relative;
+}
+#access ul {
+    list-style-type: none;
+}
+#access li {
+    float: left;
+    margin-left: 10px;
+}
+#access a {
+	color: #dadada;
+	font-weight: bold;
+    line-height: 12px;
+	text-decoration: none;
+    text-transform: lowercase;
+}
+#access a:hover, #header li.current_page_item a {
+    background: #fff;
+    color: #414141;
+}
+
+#relationship {
+    background: url('img/match.png') no-repeat top left;
+    display: block;
+    width: 239px;
+    height: 89px;
+    position: absolute;
+    top: 36px;
+    right: -6px;
+    text-indent: -9999px;
+    z-index: 100;
+}
+
+a#relationship:hover {
+    background: url('img/match.png') no-repeat top left;
+    background-position: 0 -89px;
+}
+
+/* =Content
+-------------------------------------------------------------- */
+
+#container {
+    background: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 3px 5px 11px #383838;
+    -webkit-box-shadow: 3px 5px 11px #383838;
+    box-shadow: 3px 5px 11px #383838;
+	clear: both;
+    padding: 9px;
+}
+
+#content h1 {
+    color: #595959;
+    font-size: 133.33%;
+    font-weight: bold;
+}
+
+#content p {
+    color: #878787;
+    font-size: 83.33%;
+}
+
+#content a {
+    color: #414141;
+    line-height: 90%;
+    text-decoration: none;
+}
+
+/* =Home 
+-------------------------------------------------------------- */
+#page-4 {
+    height: 345px;
+}
+
+#page-4 p {
+    line-height: 133%;
+}
+
+#site-list {
+    float: left;
+    margin: 0 8px 0 0;
+    padding: 0;
+    list-style-type: none;
+    width: 210px;
+}
+#site-list li {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 5px 0;
+}
+#site-list li h1,
+#site-list li a,
+#site-list li p {
+    color: #bdbdbd;
+}
+#site-list li.active h1 {
+    color: #595959;
+}
+#site-list li.active a {
+    color: #414141;
+}
+#site-list li.active p {
+    color: #878787;
+}
+#site-slideshow {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#site-slideshow li img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#site-list li:last-child {
+    border-bottom: none;
+}
+#site-slideshow img {
+    max-height: 344px;
+    max-width: 723px;
+}
+
+
+/* =Footer
+-------------------------------------------------------------- */
+
+#footer {
+	margin-bottom: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+#site-info a {
+	color: #808080;
+	text-decoration: none;
+}
+#site-info a:hover {
+    color: #fff;
+}
