@@ -799,9 +799,6 @@ function map_meta_cap( $cap, $user_id ) {
 	case 'remove_user':
 		$caps[] = 'remove_users';
 		break;
-	case 'delete_user':
-		$caps[] = 'delete_users';
-		break;
 	case 'promote_user':
 		$caps[] = 'promote_users';
 		break;
@@ -1028,10 +1025,13 @@ function map_meta_cap( $cap, $user_id ) {
 	case 'delete_user':
 	case 'delete_users':
 		// If multisite these caps are allowed only for super admins.
-		if ( is_multisite() && !is_super_admin( $user_id ) )
+		if ( is_multisite() && !is_super_admin( $user_id ) ) {
 			$caps[] = 'do_not_allow';
-		else
+		} else {
+			if ( 'delete_user' == $cap )
+				$cap = 'delete_users';
 			$caps[] = $cap;
+		}
 		break;
 	case 'create_users':
 		if ( is_multisite() && !get_site_option( 'add_new_users' ) )
@@ -1078,9 +1078,6 @@ function current_user_can( $capability ) {
  */
 function current_user_can_for_blog( $blog_id, $capability ) {
 	$current_user = wp_get_current_user();
-
-    if ( is_multisite() && is_super_admin() )
-		return true;
 
 	if ( empty( $current_user ) )
 		return false;
