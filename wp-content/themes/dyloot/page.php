@@ -10,15 +10,15 @@
 
 get_header(); ?>
 
+  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
   <div id="container">
   <article id="content" role="main">
-  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 		<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
       <?php the_content(); ?>
       <?php edit_post_link('Edit', '<span class="edit-link">', '</span>'); ?>
 		</div><!-- #page-## -->
-  <?php endwhile; ?>
   </article><!-- #content -->
   </div><!-- #container -->
+  <?php endwhile; ?>
 
 <?php get_footer(); ?>

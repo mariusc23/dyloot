@@ -4,6 +4,38 @@ $(document).ready(function () {
         // home page
         $('#site-slideshow').createSlideshow();
     }
+
+    // create contact form modal if there's a link for it
+    var $contact_trigger = $('#relationship');
+    if ($contact_trigger.length) {
+        var $contact_modal = $('<div id="modal"/>');
+            $overlay = $('<div id="overlay"/>');
+        $overlay.appendTo('body');
+        $contact_modal.html(
+            '<form id="contact" action="/contact" method="POST">' +
+            '<a class="close" href="#">x</a>' +
+            '<label for="name">Name:</label>' +
+            '<input type="text" name="name" id="name" value=""><br/>' +
+            '<label for="email">Email:</label>' +
+            '<input type="email" required="required" name="email" id="email" value=""><br/>' +
+            '<label for="message">Message:</label>' +
+            '<textarea name="message" rows="5" cols="40" id="message" required="required"></textarea><br/>' +
+            '<input type="submit" value="Send dyloot your message" name="contact">' +
+            '</form>');
+        $contact_modal.appendTo('body');
+        $contact_modal.find('.close').click(function (ev) {
+            ev.preventDefault();
+            $contact_modal.hide();
+            $overlay.hide();
+            return false;
+        });
+        $contact_trigger.click(function (ev) {
+            ev.preventDefault();
+            $contact_modal.show();
+            $overlay.show();
+            return false;
+        });
+    }
 });
 
 /**
@@ -16,8 +48,8 @@ jQuery.fn.createSlideshow = function(options) {
         timeout = null, current = 0;
 
     options = $.extend({
-        speed: 2000,
-        fadespeed: 400,
+        speed: 5000,
+        fadespeed: 300,
         count: $this.find('li').length,
         progress_target: $('#site-list')
     }, options);

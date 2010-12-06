@@ -36,9 +36,13 @@
       <div class="skip-link screen-reader-text"><a href="#content" title="<?php esc_attr('Skip to content'); ?>">Skip to content</a></div>
       <?php /* Our navigation menu.  If one isn't filled out, wp_nav_menu falls back to wp_page_menu.  The menu assiged to the primary position is the one used.  If none is assigned, the menu with the lowest ID is used.  */ ?>
       <?php wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) ); ?>
-      <a id="relationship" title="Hire us!" href="/contact">
-          Are we right for each other?
-      </a>
+      <?php if (!strpos($_SERVER['REQUEST_URI'], 'about') &&
+                !strpos($_SERVER['REQUEST_URI'], 'contact') &&
+                !strpos($_SERVER['REQUEST_URI'], 'portfolio')): ?>
+        <a id="relationship" title="Hire us!" href="/contact?detailed">
+            Are we right for each other?
+        </a>
+      <?php endif; ?>
 		</div><!-- #access -->
 	</div><!-- #header -->
 

@@ -30,7 +30,6 @@ body {
 	line-height: 1;
 }
 h1, h2, h3, h4, h5, h6 {
-	clear: both;
 	font-weight: normal;
 }
 ol, ul {
@@ -85,6 +84,8 @@ body {
 
 /* Text elements */
 input[type="text"],
+input[type="email"],
+input[type="password"],
 textarea {
 	background: #f9f9f9;
 	border: 1px solid #ccc;
@@ -154,19 +155,6 @@ a#relationship:hover {
 
 /* =Content
 -------------------------------------------------------------- */
-
-#container {
-    background: #fff;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 3px 5px 11px #383838;
-    -webkit-box-shadow: 3px 5px 11px #383838;
-    box-shadow: 3px 5px 11px #383838;
-	clear: both;
-    padding: 9px;
-}
-
 #content h1 {
     color: #595959;
     font-size: 133.33%;
@@ -183,8 +171,87 @@ a#relationship:hover {
     line-height: 90%;
     text-decoration: none;
 }
+#content a:hover {
+    text-decoration: underline;
+}
 
-/* =Home 
+.error404 #container,
+.error404 #container,
+.page-id-4 #container,
+.page-id-24 #container,
+.page-id-33 #container,
+.box {
+    background: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 3px 5px 11px #383838;
+    -webkit-box-shadow: 3px 5px 11px #383838;
+    box-shadow: 3px 5px 11px #383838;
+    padding: 9px;
+}
+
+.page-id-4 #container {
+	clear: both;
+}
+
+#modal, #overlay {
+    display: none;
+}
+#modal.active, #overlay.active {
+    display: block;
+}
+#modal a.close {
+    font-size: 18px;
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    text-decoration: none;
+    color: #000;
+}
+#overlay {
+    background: #000;
+    height: 100%;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+#modal {
+    background: #fff;
+    border: solid 3px #898377;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    box-shadow: 1px 2px 15px #aaa;
+    -moz-box-shadow: 1px 2px 15px #333;
+    -webkit-box-shadow: 1px 2px 15px #aaa;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 300px;
+    margin: -150px 0 0 -200px;
+    padding: 9px;
+    z-index: 1000;
+}
+
+/* =404 page
+-------------------------------------------------------------- */
+.error404 #content p {
+    font-size: 100%;
+    padding: 1em 0;
+}
+
+.error404 #content ul {
+    list-style: disc inside;
+    margin: 0 0 1em 1em;
+}
+
+/* =Home
 -------------------------------------------------------------- */
 #page-4 {
     height: 345px;
@@ -237,6 +304,124 @@ a#relationship:hover {
 #site-slideshow img {
     max-height: 344px;
     max-width: 723px;
+}
+#site-slideshow li {
+    display: none;
+}
+#site-slideshow li:first-child {
+    display: inline;
+}
+
+/* =About
+-------------------------------------------------------------- */
+.box {
+    float: left;
+    margin-left: 10px;
+    padding-top: 15px;
+    width: 295px;
+}
+.box:first-child {
+    margin-left: 0;
+}
+.box img {
+    margin: 0 10px 6px 0;
+    float: left;
+}
+.box {
+    line-height: 1.2em;
+    color: #878787;
+}
+.box h2 {
+    font-size: 83.33%;
+    margin: .2em 0 .5em;
+}
+.box p {
+    margin-bottom: .5em;
+}
+.box ul,
+.box ol {
+    font-size: 83.33%;
+}
+.box ol {
+    list-style-type: decimal;
+    list-style-position: outside;
+    padding-left: 160px;
+}
+.box ol li {
+    margin: .3em 0;
+}
+
+/* =Portfolio
+-------------------------------------------------------------- */
+.page-id-24 #container {
+    padding: 0;
+}
+.page-id-24 #relationship {
+    display: none;
+}
+.featured {
+    float: right;
+    padding-left: 9px;
+}
+.page-id-24 section {
+    display: block;
+    height: 344px;
+    overflow: hidden;
+    padding: 9px;
+	border-bottom: 1px solid #ccc;
+}
+
+.page-id-24 section:last-child {
+    border-bottom: none;
+}
+
+.page-id-24 #content p {
+    padding: .5em 0;
+}
+
+.page-id-24 #content ol {
+    color: #878787;
+    font-size: 83.33%;
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-left: 1em;
+}
+
+
+/* =Contact page
+-------------------------------------------------------------- */
+.page-id-33 label,
+#modal label {
+    display: inline-block;
+    vertical-align: top;
+    margin: .5em 0;
+    width: 6em;
+}
+#modal input,
+.page-id-33 input,
+#modal textarea,
+.page-id-33 textarea {
+    margin: .3em 0;
+}
+#modal textarea,
+.page-id-33 textarea {
+    width: 300px;
+}
+
+#modal input[type="submit"],
+.page-id-33 input[type="submit"] {
+    margin: 1em 0 0 5.5em;
+}
+#confirmation {
+    color: #444;
+    margin: 1em 0;
+    text-align: center;
+}
+#confirmation h1 {
+    margin-bottom: 1em;
+}
+#confirmation p {
+    font-size: 100%;
 }
 
 
