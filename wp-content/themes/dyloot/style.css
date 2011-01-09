@@ -204,10 +204,10 @@ a#relationship:hover {
 #modal a.close {
     font-size: 18px;
     position: absolute;
-    right: 8px;
-    top: 5px;
+    right: 17px;
+    top: 14px;
     text-decoration: none;
-    color: #000;
+    color: #999;
 }
 #overlay {
     background: #000;
@@ -231,10 +231,10 @@ a#relationship:hover {
     -webkit-box-shadow: 1px 2px 15px #aaa;
     position: absolute;
     left: 50%;
-    top: 50%;
-    width: 400px;
-    height: 300px;
-    margin: -150px 0 0 -200px;
+    top: 40px;
+    width: 330px;
+    height: 338px;
+    margin-left: -165px;
     padding: 9px;
     z-index: 1000;
 }
@@ -392,30 +392,37 @@ a#relationship:hover {
 -------------------------------------------------------------- */
 .page-id-33 label,
 #modal label {
-    display: inline-block;
+    display: block;
     vertical-align: top;
-    margin: .5em 0;
-    width: 6em;
+    margin: .5em 0 0 0;
 }
-#modal input,
-.page-id-33 input,
+#modal input[type="text"],
+.page-id-33 input[type="text"],
+#modal input[type="email"],
+.page-id-33 input[type="email"],
 #modal textarea,
 .page-id-33 textarea {
-    margin: .3em 0;
+    margin: 0 0 .3em 0;
+    width: 306px;
 }
 #modal textarea,
 .page-id-33 textarea {
-    width: 300px;
+    height: 105px;
 }
 
-#modal input[type="submit"],
-.page-id-33 input[type="submit"] {
-    margin: 1em 0 0 5.5em;
+.page-id-33 h1,
+#modal h1 {
+    margin-top: 5px;
+}
+
+#modal .submit,
+#contact-wrap .submit {
+    padding-top: 1em;
+    text-align: center;
 }
 #confirmation {
     color: #444;
     margin: 1em 0;
-    text-align: center;
 }
 #confirmation h1 {
     margin-bottom: 1em;
@@ -423,7 +430,40 @@ a#relationship:hover {
 #confirmation p {
     font-size: 100%;
 }
+.page-id-33 h2,
+#modal h2 {
+    border-bottom: 1px solid #f0f0f0;
+    color: #969696;
+    font-size: 85%;
+    margin-bottom: 1em;
+    margin-right: 4px;
+    padding-bottom: 1em;
+}
 
+#contact-wrap {
+    display: inline-block;
+    padding: 0 10px 0 5px;
+    vertical-align: top;
+    width: 316px;
+}
+#contact-side {
+    border-left: 1px solid #f0f0f0;
+    display: inline-block;
+    padding-left: 10px;
+    width: 600px;
+}
+
+#contact input.error,
+#contact textarea.error {
+    border-color: #f00;
+}
+#contact span.error {
+    color: #f00;
+}
+/* Some modal-specific stuff */
+#modal h1 {
+    font-size: 16px;
+}
 
 /* =Footer
 -------------------------------------------------------------- */

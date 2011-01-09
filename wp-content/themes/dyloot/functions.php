@@ -60,6 +60,7 @@ function dyloot_init() {
 
 define('FROM_CONTACT', 'Team Dyloot <team@dyloot.com>');
 define('CONTACT_POST_ID', 45);
+
 function dyloot_contact() {
 global $wpdb;
 if ($_POST['contact']) {
@@ -77,6 +78,7 @@ if ($_POST['contact']) {
         }
     }
 
+    $response = '';
     if (!$contact_invalid) {
         $contact_headers = "From: {$contact_data['name']} <{$contact_data['email']}>\r\n"
             . "Content-Type: text/html; charset=iso-8859-1\r\n";
@@ -95,6 +97,9 @@ if ($_POST['contact']) {
             'comment_author_url', 'comment_content', 'comment_type',
             'comment_parent', 'user_ID');
         $comment_id = wp_new_comment($commentdata);
+        if (!$comment_id) {
+            $response = 'duplicate';
+        }
         $comment_approved = $wpdb->get_results(
             "SELECT (comment_approved = 'spam') AS spam
              FROM wp_comments WHERE comment_ID = '{$comment_id} LIMIT 1;'");
@@ -119,22 +124,59 @@ If for any reason we do not get back to you soon, simply reply to this email.</p
             }
 
             if (!$success) {
+                $response = 'fail-mail';
                 $myFile = "fail-mail.txt";
                 $fh = fopen($myFile, 'a') or die("can't open file");
                 $time_c = date('Y-m-d H:i:s');
                 fwrite($fh, "You received a message from {$contact_data['name']} ({$contact_data['email']}) on {$time_c}\n");
                 fclose($fh);
+            } else {
+                $response = 'success';
             }
             // redirect to prevent resubmission
-            header("Location: {$_SERVER['HTTP_REFERER']}?contacted");
-            die;
+            if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+               strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                // ajax request, do nothing
+            } else {
+                header("Location: {$_SERVER['HTTP_REFERER']}?contacted");
+                die;
+            }
         } else {
             wp_mail(FROM_CONTACT, '[spam?] Dyloot Contact Form Message',
                 '<pre style="font-family: Helvetica, Arial, sans-serif">' . $contact_data['message'] . '</pre>', $contact_headers);
+            $response = 'spam';
         }
+    } else {
+        global $contact_errors;
+        $contact_errors = $contact_invalid;
+        $response = 'invalid';
     }
+
+    // ajax handling here
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+       strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        header('Cache-Control: no-cache, must-revalidate');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Content-type: application/json');
+        $result = array('status' => $response);
+        switch ($response) {
+            case 'invalid':
+                $result['errors'] = $contact_errors;
+                break;
+            case 'success':
+                break;
+            case 'spam':
+                break;
+            case 'duplicate':
+                break;
+            case 'fail-mail':
+                break;
+        }
+        die(json_encode($result));
+    }
+
 }
 }
 
+dyloot_contact();
 add_action('init', 'dyloot_init');
-add_action('init', 'dyloot_contact');
